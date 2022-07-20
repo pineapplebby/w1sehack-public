@@ -19,7 +19,7 @@ public class Timestamps
         Date date = new Date();
         SimpleDateFormat dateFormatter = new SimpleDateFormat("HH:mm");
         String strDate = dateFormatter.format(date);
-        TextComponentString time = new TextComponentString(ChatFormatting.DARK_PURPLE + "[" + strDate + "]" + ChatFormatting.RESET + " ");
+        TextComponentString time = new TextComponentString(ChatFormatting.DARK_PURPLE + "<" + strDate + ">" + ChatFormatting.RESET + " ");
         event.setMessage(time.appendSibling(event.getMessage()));
     }
 }

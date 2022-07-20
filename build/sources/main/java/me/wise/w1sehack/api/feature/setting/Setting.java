@@ -4,6 +4,7 @@ import me.wise.w1sehack.api.event.ClientEvent;
 import me.wise.w1sehack.api.feature.Feature;
 import net.minecraft.world.BossInfo;
 import net.minecraftforge.common.MinecraftForge;
+import org.apache.logging.log4j.core.config.plugins.convert.EnumConverter;
 
 import java.util.function.Predicate;
 
@@ -177,36 +178,6 @@ public class Setting<T> {
         }
     }
 
-    public String currentEnumName() {
-        return EnumConverter.getProperName((Enum) this.value);
-    }
-
-    public int currentEnum() {
-        return EnumConverter.currentEnum((Enum) this.value);
-    }
-
-    public void increaseEnum() {
-        this.plannedValue = (T) EnumConverter.increaseEnum((Enum) this.value);
-        ClientEvent event = new ClientEvent(this);
-        MinecraftForge.EVENT_BUS.post(event);
-        if (!event.isCanceled()) {
-            this.value = this.plannedValue;
-        } else {
-            this.plannedValue = this.value;
-        }
-    }
-
-    public void increaseEnumNoEvent() {
-        this.value = (T) EnumConverter.increaseEnum((Enum) this.value);
-    }
-
-    public String getType() {
-        if (this.isEnumSetting()) {
-            return "Enum";
-        }
-        return this.getClassName(this.defaultValue);
-    }
-
     public <T> String getClassName(T value) {
         return value.getClass().getSimpleName();
     }
@@ -220,10 +191,6 @@ public class Setting<T> {
 
     public boolean isNumberSetting() {
         return this.value instanceof Double || this.value instanceof Integer || this.value instanceof Short || this.value instanceof Long || this.value instanceof Float;
-    }
-
-    public boolean isEnumSetting() {
-        return !this.isNumberSetting() && !(this.value instanceof String) && !(this.value instanceof Bind) && !(this.value instanceof Character) && !(this.value instanceof Boolean);
     }
 
     public boolean isStringSetting() {
