@@ -17,7 +17,7 @@ import me.wise.w1sehack.api.management.SavableManager;
 public class KamiMod {
     public static String NAME = "w1sehack";
     public static final String MOD_ID = "w1sehack";
-    public static String VERSION = "1.1.0";
+    public static String VERSION = "1.1.1 - BETA";
     public static final String NAME_VERSION = NAME + " " + VERSION;
     public static String NAME_VERSION_COLORED = NAME + " " + VERSION;
     @Mod.Instance
